@@ -1,79 +1,403 @@
-"Makayla Gray's Data Visualization Final Project"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>How July Brought Severe Air Quality Levels to D.C.</title>
+  <meta
+    name="description"
+    content="Makayla Gray's data visualization final project examining severe July air quality levels in Washington, D.C."
+  />
 
-How July brought severe air quality levels to D.C.
-By: Makayla Gray
+  <style>
+    :root {
+      --ink: #17211d;
+      --muted: #5d6761;
+      --paper: #fffdf8;
+      --line: #d9ddd7;
+      --accent: #2c6b4f;
+      --accent-light: #e8f1ea;
+    }
 
-# Washington, D.C. Air Quality in July 2026
+    * {
+      box-sizing: border-box;
+    }
 
-In Washington, D.C., residents and tourists alike tend to flock outdoors throughout July, soaking up the sun before the weather creeps into a chill. This year, a series of air pollution events made it risky for people to enjoy time outside while facing concerns about exposure to a harmful air quality index, or AQI.
+    html {
+      scroll-behavior: smooth;
+    }
 
-With pollutants produced from wildfire smoke and the world’s now-largest fireworks show celebrating America’s 250th Independence Day, air quality specialists are examining how these combined factors have impacted overall air quality in the District, and what the lasting impacts on the environment and human health could be.
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+    }
 
-The nation’s capital experienced one of its worst air quality months in history in July. The main pollutant contributing to July’s high AQI levels was PM2.5, or particulate matter. PM2.5 is considered more dangerous than ozone, a common pollutant, because its extremely small particles can penetrate deep into the lungs and enter the bloodstream. If inhaled, PM2.5 could pose serious health risks.
+    .site-header {
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 1.5rem;
+    }
 
-The spike in PM2.5 is attributed mostly to the Canadian wildfires that clouded much of northern America and resulted in an AQI of 250, which is considered “very unhealthy” for most people to inhale. With fireworks shows happening every July, AQI is typically higher during the month, but last year in July, D.C.’s leading AQI contributor was ozone.
+    .site-header__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-## July Air Quality in D.C.: 2025 vs. 2026
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 2.5rem;
+    }
 
-<iframe title="July Air Quality in D.C., 2025 vs. 2026" aria-label="Line chart" id="datawrapper-chart-T9Y9S" src="https://datawrapper.dwcdn.net/T9Y9S/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="442" data-external="1"></iframe>
+    .kicker {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
-Air is considered “moderate” for health if the AQI level is between 50 and 100. To track this, the city uses air quality sensors from federal reference monitors, as well as systems from Clarity Movement Co., a company that tracks air quality measurements using products placed around the world.
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.6rem, 7vw, 5.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
 
-Samuel Kay, branch chief for Air Quality Planning at D.C.’s Department of Energy & Environment, says the city has the densest federal monitor network of sensors in the country, but the six located throughout the city are “not really that great for understanding air quality differences at the neighborhood scale.”
+    .dek {
+      max-width: 720px;
+      margin: 1.5rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.45;
+    }
 
-In addition, D.C. installed a fleet of low-cost sensors about six months ago, Kay said.
+    .byline {
+      margin: 2rem 0 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
 
-The low-cost sensor data comes from Open Data D.C., and while it does a better job of showing ward-specific air quality than the federal sensors, Kay says it’s still working out some kinks.
+    .story {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+      font-size: 1.16rem;
+    }
 
-> “If it looks like a sensor is showing some crazy high amount, assume that it's not real,” Kay said. “That happens when spiders crawl into the (sensor), and then the laser doesn't know the difference between a spider web and air pollution.”
+    .story p {
+      margin: 0 0 1.5rem;
+    }
 
-Since the local sensors weren’t installed last July, there is no data to show how air quality impacted the different wards and neighborhoods in D.C. last July compared to this year. However, the last time wildfire smoke had a large, lasting impact on the District similar to this year was in June 2023.
+    .story p:first-child::first-letter {
+      float: left;
+      margin: 0.1rem 0.55rem 0 0;
+      color: var(--accent);
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 0.78;
+    }
 
-## The Two Most Severe Wildfire Smoke Events in D.C. History
+    .chart {
+      width: min(1100px, calc(100vw - 2rem));
+      margin: 3rem 50% 3rem;
+      transform: translateX(-50%);
+    }
 
-<iframe title="The two most severe wildfire smoke events in D.C. history" aria-label="Split Bars" id="datawrapper-chart-g7yfa" src="https://datawrapper.dwcdn.net/g7yfa/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="236" data-external="1"></iframe>
+    .chart iframe {
+      display: block;
+      width: 100%;
+      min-width: 100%;
+      border: 0;
+    }
 
-In both instances, the poor air quality was in part attributed to wildfire smoke from Canada.
+    .callout {
+      margin: 2.5rem 0;
+      padding: 1.5rem;
+      border-left: 5px solid var(--accent);
+      background: var(--accent-light);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
 
-> “I would say (June 2023) was not quite as bad (as July 2026), but it was longer lasting,” Kay said. “I would say just like broadly speaking, this is the most heavily impacted since 2023 that the District has been affected by wildfires.”
+    .callout strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-## Fireworks Add to D.C.’s Air Pollution
+    .footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.82rem;
+    }
 
-Wildfire smoke was not the only factor contributing to D.C.’s Code Purple, or very unhealthy, air quality levels. While Fourth of July celebrations let fireworks loose every year, the 250th anniversary gave way to the world’s largest fireworks show, hosted on the National Mall and displaying 850,000 fireworks.
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 3rem;
+      }
 
-Of the 26 monitored sensors in the D.C. region, all of them reached Code Orange following the Fourth of July National Mall fireworks show, showing “unhealthy for sensitive groups” or worse during the event, according to a report done by Clarity Movement.
+      .story {
+        font-size: 1.08rem;
+      }
 
-## How Firework Pollution Spread Across D.C.’s Wards
+      .chart {
+        width: 100%;
+        margin: 2.25rem 0;
+        transform: none;
+      }
+    }
+  </style>
+</head>
 
-<iframe title="How firework pollution spread across D.C.'s wards, July 2026" aria-label="Choropleth map" id="datawrapper-chart-NqFj0" src="https://datawrapper.dwcdn.net/NqFj0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="763" data-external="1"></iframe>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      Makayla Gray's Data Visualization Final Project
+    </div>
+  </header>
 
-Kay says his department usually sees minimal differences between wards in D.C., but the fireworks on the Fourth triggered a notable difference in air quality based on which direction the smoke plumes were blowing.
+  <main>
+    <section class="hero">
+      <p class="kicker">Air Quality</p>
 
-The data tracked from the fireworks smoke depended on how close the fireworks were set off to a specific sensor.
+      <h1>How July brought severe air quality levels to D.C.</h1>
 
-Kay says if the source of a pollutant is several hundred miles away, like the Canadian wildfire smoke, then it will encompass the city in relatively the same amounts.
+      <p class="dek">
+        Wildfire smoke and the world’s largest firework show pushed Washington,
+        D.C.'s air quality to dangerous levels.
+      </p>
 
-> “But if, as they say, ‘the call is coming from within the house,’ or the emissions are coming from the National Mall, and the plume goes a certain direction, whether a monitor increases or not is reflective of (the sensor being within that plume),” Kay said.
+      <p class="byline">By Makayla Gray</p>
+    </section>
 
-He stressed that local fireworks are also taken into account for the high AQI total from July Fourth and Fifth. He said it’s possible neighborhood fireworks could have driven air quality to Code Purple before the Freedom 250 show even started, “and then the National Mall show made it a whole lot worse.”
+    <article class="story">
+      <p>
+        In Washington D.C., residents and tourists alike tend to flock outdoors
+        throughout July, soaking up the sun before the weather creeps into a
+        chill. This year, a series of air pollution events made it risky for
+        people to enjoy time outside withstanding worries of being exposed to a
+        harmful air quality index, or AQI.
+      </p>
 
-## Ozone Remains a Long-Term Concern
+      <p>
+        With pollutants produced from wildfire smoke and the world’s
+        now-largest firework show celebrating America’s 250th Independence Day,
+        air quality specialists are examining how these combined factors have
+        impacted overall air quality in the District, and what the lasting
+        impacts on the environment and human health could be.
+      </p>
 
-Data on air quality in the District goes back to the 1950s, when tracking first began, 20 years before the establishment of the Environmental Protection Agency (EPA).
+      <p>
+        The nation’s capital experienced one of its worst air quality months in
+        history in July. The main pollutant contributing to July’s high AQI
+        levels was PM2.5, or particulate matter. PMs are considered more
+        dangerous than ozone, a common pollutant, because with small diameters
+        like 2.5 micrograms per cubic meter, it's small enough to get into
+        one’s lungs and bloodstream. If inhaled it could pose serious health
+        issues.
+      </p>
 
-As a former EPA staffer, Kay says “the biggest cause for concern, from the perspective of compliance with the national ambient air quality standards for the District, is ozone.”
+      <p>
+        The spike in PM2.5 is attributed mostly to the Canadian wildfires that
+        clouded much of northern America and resulted in an AQI of 250, which
+        is “very unhealthy” for most people to inhale. With firework shows
+        happening every July, AQI is typically higher in this month, but last
+        year in July, D.C.'s leading AQI spiker came from ozone.
+      </p>
 
-As noted in the first graph, ozone levels in July for D.C. were relatively low in comparison to 2025.
+      <section class="chart" aria-label="July air quality chart">
+        <iframe
+          title="July Air Quality in D.C., 2025 vs. 2026"
+          aria-label="Line chart comparing July air quality in Washington, D.C. during 2025 and 2026"
+          id="datawrapper-chart-T9Y9S"
+          src="https://datawrapper.dwcdn.net/T9Y9S/1/"
+          scrolling="no"
+          frameborder="0"
+          height="442"
+          data-external="1">
+        </iframe>
+      </section>
 
-## How to Protect Yourself During Poor Air Quality
+      <p>
+        Air is considered “moderate” for health if the AQI level is between 50
+        to 100. To track this, the city uses air quality sensors from federal
+        reference monitors, and systems from Clarity Movement Co., a company
+        that tracks air quality measurement using products placed around the
+        world.
+      </p>
 
-The best ways that people can protect themselves from hazardous air pollutants are to:
+      <p>
+        Samuel Kay, branch chief for Air Quality Planning at D.C.’s Department
+        of Energy & Environment, says the city has the densest federal monitor
+        network of sensors in the country, but the six located throughout the
+        city are “not really that great for understanding air quality
+        differences at the neighborhood scale.” So, in addition, D.C. installed
+        a fleet of low-cost sensors about six months ago, Kay said.
+      </p>
 
-* Limit time outdoors during **Code Orange, Red, Purple, or Maroon** air quality conditions.
-* Wear a mask or face covering if going outside is necessary.
-* Run air conditioning on a **recirculate** setting.
-* Use a **portable HEPA air cleaner** indoors.
+      <p>
+        The low-cost sensor data comes from Open Data D.C., and while it does a
+        better job at showing ward specific air quality than the federal
+        sensors, Kay says it’s still working out some kinks.
+      </p>
 
-These measures are recommended by the American Lung Association to reduce exposure to hazardous air pollutants.
+      <p>
+        “If it looks like a sensor is showing some crazy high amount, assume
+        that it's not real,” Kay said. “That happens when spiders crawl into the
+        sensor, and then the laser doesn't know the difference between a spider
+        web and air pollution.”
+      </p>
+
+      <p>
+        Since the local sensors weren’t installed last July, there is no data to
+        show how air quality impacted the different wards and neighborhoods in
+        D.C. last July compared to this year’s. But the last time wildfire smoke
+        had a large lasting impact on the District similar to this year was in
+        June 2023.
+      </p>
+
+      <section class="chart" aria-label="Wildfire smoke events chart">
+        <iframe
+          title="The two most severe wildfire smoke events in D.C. history"
+          aria-label="Split bar chart comparing the two most severe wildfire smoke events in Washington, D.C. history"
+          id="datawrapper-chart-g7yfa"
+          src="https://datawrapper.dwcdn.net/g7yfa/1/"
+          scrolling="no"
+          frameborder="0"
+          height="236"
+          data-external="1">
+        </iframe>
+      </section>
+
+      <p>
+        In both instances, the poor air quality is in part attributed to
+        wildfire smoke from Canada.
+      </p>
+
+      <p>
+        “I would say June 2023 was not quite as bad as July 2026, but it was
+        longer lasting,” Kay said. “I would say just like broadly speaking, this
+        is the most heavily impacted since 2023 that the District has been
+        affected by wildfires.”
+      </p>
+
+      <p>
+        Wildfire smoke was not the only factor contributing to D.C.’s Code
+        Purple, or very unhealthy, air quality levels. While Fourth of July
+        celebrations let fireworks loose every year, the 250th anniversary gave
+        way to the world’s largest firework show hosted on the National Mall,
+        displaying 850,000 fireworks.
+      </p>
+
+      <p>
+        Of the 26 monitored sensors in the D.C. region, all of them reached Code
+        Orange following the Fourth of July National Mall firework show, showing
+        “unhealthy for sensitive groups” or worse during the event, according to
+        a report done by Clarity Movement.
+      </p>
+
+      <section class="chart" aria-label="Firework pollution map">
+        <iframe
+          title="How firework pollution spread across D.C.'s wards, July 2026"
+          aria-label="Choropleth map showing how firework pollution spread across Washington, D.C. wards in July 2026"
+          id="datawrapper-chart-NqFj0"
+          src="https://datawrapper.dwcdn.net/NqFj0/1/"
+          scrolling="no"
+          frameborder="0"
+          height="763"
+          data-external="1">
+        </iframe>
+      </section>
+
+      <p>
+        Kay says his department usually sees minimal differences between wards
+        in D.C., but the fireworks on the fourth triggered a notable difference
+        in air quality based on which direction the smoke plumes were blowing.
+      </p>
+
+      <p>
+        The data tracked from the firework smoke depended on how close the
+        fireworks were set off to a specific sensor.
+      </p>
+
+      <p>
+        Kay says if the source of a pollutant is several hundred miles away,
+        like the Canadian wildfire smoke, then it will encompass the city in
+        relatively the same amounts. “But if, as they say, ‘the call is coming
+        from within the house,’ or the emissions are coming from the National
+        Mall, and the plume goes a certain direction, whether a monitor
+        increases or not is reflective of the sensor being within that plume,”
+        Kay said.
+      </p>
+
+      <p>
+        He stressed that local fireworks are also taken into account for the high
+        AQI total from July fourth and fifth, saying it’s possible neighborhood
+        fireworks could have drawn up a Code Purple before the Freedom 250 show
+        even started, “and then the National Mall show made it a whole lot
+        worse.”
+      </p>
+
+      <p>
+        Data on air quality in the district goes back to the 1950s when tracking
+        first began, 20 years before the establishment of the Environmental
+        Protection Agency. As a former staffer of the EPA, Kay says “the biggest
+        cause for concern, from the perspective of compliance with the national
+        ambient air quality standards for the District, is ozone.” As noted in
+        the chart above, ozone levels in July for D.C. were relatively low in
+        comparison to 2025.
+      </p>
+
+      <aside class="callout">
+        <strong>Protecting yourself</strong>
+        The best ways that people can protect themselves from hazardous air
+        pollutants are to limit time outdoors in Code Orange, Red, Purple or
+        Maroon, and to wear a mask or face covering if going outside is
+        necessary. Running the air conditioning on a recirculate setting or
+        using a portable HEPA air cleaner are also recommended.
+      </aside>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Makayla Gray | Data Visualization Final Project</p>
+  </footer>
+
+  <script>
+    window.addEventListener("message", function (event) {
+      if (event.data["datawrapper-height"]) {
+        const iframes = document.querySelectorAll("iframe");
+
+        for (const chartId in event.data["datawrapper-height"]) {
+          for (let i = 0; i < iframes.length; i++) {
+            if (iframes[i].contentWindow === event.source) {
+              iframes[i].style.height =
+                event.data["datawrapper-height"][chartId] + "px";
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
