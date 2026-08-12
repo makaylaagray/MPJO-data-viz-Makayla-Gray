@@ -8,272 +8,37 @@
 
   <style>
     :root {
-      --background: #fffdf8;
-      --text: #1d1d1b;
-      --muted: #5f5f5a;
-      --accent: #2e684b;
-      --border: #d8d5cd;
+      --ink: #1b1b1b;
+      --muted: #5e5e5e;
+      --paper: rgba(255, 253, 248, 0.96);
+      --line: #d9d5cd;
+      --green: #286247;
+      --navy: #07172e;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      background: var(--background);
-      color: var(--text);
+      color: var(--ink);
+      background: var(--navy);
       font-family: Georgia, "Times New Roman", serif;
       font-size: 19px;
       line-height: 1.7;
     }
 
-    header {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--border);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .hero {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 70px 24px 40px;
-    }
-
-    .project-label {
-      margin: 0 0 20px;
-      color: var(--accent);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      max-width: 850px;
-      margin: 0;
-      font-size: clamp(42px, 7vw, 82px);
-      font-weight: 700;
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-    }
-
-    .byline {
-      margin: 28px 0 0;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    article {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px 70px;
-    }
-
-    p {
-      margin: 0 0 28px;
-    }
-
-    article p:first-child::first-letter {
-      float: left;
-      margin: 8px 10px 0 0;
-      color: var(--accent);
-      font-size: 74px;
-      font-weight: 700;
-      line-height: 0.72;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-
-    a:hover {
-      color: #17432f;
-    }
-
-    .chart {
-      width: min(1100px, calc(100vw - 32px));
-      margin: 45px 50%;
-      transform: translateX(-50%);
-    }
-
-    .chart iframe {
-      display: block;
+    #fireworks-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
       width: 100%;
-      min-width: 100% !important;
-      border: none;
-    }
-
-    footer {
-      padding: 22px 24px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 13px;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        font-size: 18px;
-      }
-
-      .hero {
-        padding-top: 45px;
-      }
-
-      .chart {
-        width: 100%;
-        margin: 35px 0;
-        transform: none;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <div class="header-content">Data Visualization Final Project</div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <p class="project-label">Data Visualization Final Project</p>
-      <h1>How July brought severe air quality levels to D.C.</h1>
-      <p class="byline">By: Makayla Gray</p>
-    </section>
-
-    <article>
-      <p>
-        In Washington D.C., residents and tourists alike tend to flock outdoors throughout July, soaking up the sun before the weather creeps into a chill. This year, a series of air pollution events made it risky for people to enjoy time outside withstanding worries of being exposed to a harmful air quality index, or AQI.
-      </p>
-
-      <p>
-        With pollutants produced from wildfire smoke and the world’s now-largest firework show celebrating America’s 250th Independence Day, air quality specialists are examining how these combined factors have impacted overall air quality in the District, and what the lasting impacts on the environment and human health could be.
-      </p>
-
-      <p>
-        The nation’s capital experienced one of its worst air quality months in history in July. The main pollutant contributing to July’s high AQI levels was <a href="https://www.epa.gov/pm-pollution/particulate-matter-pm-basics" target="_blank" rel="noopener noreferrer">PM2.5, or particulate matter</a>. PMs are considered more dangerous than ozone, a common pollutant, because with small diameters like 2.5 micrograms per cubic meter, it's small enough to get into one’s lungs and bloodstream. If inhaled it could pose serious health issues.
-      </p>
-
-      <p>
-        The spike in PM2.5 is attributed mostly to the Canadian wildfires that clouded much of northern America and resulted in an AQI of 250, which is “very unhealthy” for most people to inhale. With firework shows happening every July, AQI is typically higher in this month, but last year in July, D.C.'s leading AQI spiker came from ozone.
-      </p>
-
-      <div class="chart">
-        <iframe title="July Air Quality in D.C., 2025 vs. 2026" aria-label="Line chart" id="datawrapper-chart-T9Y9S" src="https://datawrapper.dwcdn.net/T9Y9S/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="442" data-external="1"></iframe>
-      </div>
-
-      <p>
-        Air is considered “moderate” for health if the AQI level is between 50 to 100. To track this, the city uses air quality sensors from federal reference monitors, and systems from Clarity Movement Co., a company that tracks air quality measurement using products placed around the world.
-      </p>
-
-      <p>
-        Samuel Kay, branch chief for Air Quality Planning at D.C.’s Department of Energy & Environment, says the city has the densest federal monitor network of sensors in the country, but the six located throughout the city are “not really that great for understanding air quality differences at the neighborhood scale.” So, in addition, D.C. installed a fleet of <a href="https://www.edf.org/maps/gca-air-tracker/?v=38.888920,-77.040663,13&lang=en&aqStd=epa&pollutionType=PM25&playbackTimelineOpen=true&t=1783245600000" target="_blank" rel="noopener noreferrer">low-cost sensors</a> about six months ago, Kay said.
-      </p>
-
-      <p>
-        The low-cost sensor data comes from Open Data D.C., and while it does a better job at showing ward specific air quality than the federal sensors, Kay says it’s still working out some kinks.
-      </p>
-
-      <p>
-        “If it looks like a sensor is showing some crazy high amount, assume that it's not real,” Kay said. “That happens when spiders crawl into the (sensor), and then the laser doesn't know the difference between a spider web and air pollution.”
-      </p>
-
-      <p>
-        Since the local sensors weren’t installed last July, there is no data to show how air quality impacted the different wards and neighborhoods in D.C. last July compared to this year’s, but the last time wildfire smoke had a large lasting impact on the District similar to this year was in June 2023.
-      </p>
-
-      <div class="chart">
-        <iframe title="The two most severe wildfire smoke events in D.C. history" aria-label="Split Bars" id="datawrapper-chart-g7yfa" src="https://datawrapper.dwcdn.net/g7yfa/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="236" data-external="1"></iframe>
-      </div>
-
-      <p>
-        In both instances, the poor air quality is in part attributed to wildfire smoke from Canada.
-      </p>
-
-      <p>
-        “I would say (June 2023) was not quite as bad (as July 2026), but it was longer lasting,” Kay said. “I would say just like broadly speaking, this is the most heavily impacted since 2023 that the District has been affected by wildfires.”
-      </p>
-
-      <p>
-        Wildfire smoke was not the only factor contributing to D.C.’s Code Purple, or very unhealthy, air quality levels. While Fourth of July celebrations let fireworks loose every year, the 250th anniversary gave way to the world’s largest firework show hosted on the National Mall, displaying 850,000 fireworks.
-      </p>
-
-      <p>
-        Of the 26 monitored sensors in the D.C. region, all of them reached Code Orange following the Fourth of July National Mall firework show, showing “unhealthy for sensitive groups” or worse during the event, <a href="https://www.clarity.io/blog/new-report-finds-july-4-fireworks-contributed-to-elevated-air-pollution-across-washington-d-c" target="_blank" rel="noopener noreferrer">according to a report done by Clarity Movement</a>.
-      </p>
-
-      <div class="chart">
-        <iframe title="How firework pollution spread across D.C.'s wards, July 2026" aria-label="Choropleth map" id="datawrapper-chart-NqFj0" src="https://datawrapper.dwcdn.net/NqFj0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="763" data-external="1"></iframe>
-      </div>
-
-      <p>
-        Kay says his department usually sees minimal differences between wards in D.C., but the fireworks on the fourth triggered a notable difference in air quality based on which direction the smoke plumes were blowing.
-      </p>
-
-      <p>
-        The data tracked from the firework smoke depended on how close the fireworks were set off to a specific sensor.
-      </p>
-
-      <p>
-        Kay says if the source of a pollutant is several hundred miles away, like the Canadian wildfire smoke, then it will encompass the city in relatively the same amounts. “But if, as they say, ‘the call is coming from within the house,’ or the emissions are coming from the National Mall, and the plume goes a certain direction, whether a monitor increases or not is reflective of (the sensor being within that plume),” Kay said.
-      </p>
-
-      <p>
-        He stressed that local fireworks are also taken into account for the high AQI total from July fourth and fifth, saying it’s possible neighborhood fireworks could have drawn up a Code Purple before the Freedom 250 show even started, “and then the national mall show made it a whole lot worse.”
-      </p>
-
-      <p>
-        Data on air quality in the district goes back to the 1950s when tracking first began, 20 years before the establishment of the Environmental Protection Agency (EPA). As a former staffer of the EPA, Kay says “the biggest cause for concern, from the perspective of compliance with the national ambient air quality standards for the District, is ozone.” As noted in graph 2, ozone levels in July for D.C. were relatively low in comparison to 2025.
-      </p>
-
-      <p>
-        The best ways that people can protect themselves from hazardous air pollutants are to limit time outdoors in Code Orange, Red, Purple or Maroon, and to wear a mask or face covering if going outside is necessary,<a href="https://www.lung.org/blog/poor-air-quality-protection" target="_blank" rel="noopener noreferrer"> according to the American Lung Association</a>. Running the air conditioning on a recirculate setting or using a portable HEPA air cleaner are also recommended.
-      </p>
-    </article>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      Data Visualization Final Project — Makayla Gray
-    </div>
-  </footer>
-
-  <script type="text/javascript">
-    (function () {
-      window.addEventListener("message", function (event) {
-        if (event.data["datawrapper-height"] !== undefined) {
-          var iframes = document.querySelectorAll("iframe");
-
-          for (var chartId in event.data["datawrapper-height"]) {
-            for (var i = 0; i < iframes.length; i++) {
-              if (iframes[i].contentWindow === event.source) {
-                iframes[i].style.height =
-                  event.data["datawrapper-height"][chartId] + "px";
-              }
-            }
-          }
-        }
-      });
-    })();
-  </script>
-</body>
-</html>
+      height: 100%;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(47, 98, 157,
